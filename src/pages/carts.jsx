@@ -12,7 +12,7 @@ export default function Cart() {
       {cart.map((item) => (
         <div key={item.id} className="d-flex gap-3 p-4 ">
           {item.title} - ₹{item.price}
-          <Button onClick={() => removeFromCart(item.id)} className="">
+          <Button variant="danger" onClick={() => removeFromCart(item.id)}>
             Remove
           </Button>
         </div>
