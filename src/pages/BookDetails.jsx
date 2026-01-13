@@ -4,7 +4,7 @@ import axios from "axios";
 import { Button, Container } from "react-bootstrap";
 import { CartContext } from "../context/CartContext";
 
-export default function BookDetails({ book }) {
+export default function BookDetails() {
   const { id } = useParams();
   const [book, setBook] = useState({});
   const { addToCart } = useContext(CartContext);
@@ -20,9 +20,7 @@ export default function BookDetails({ book }) {
     addToCart(book);
     navigate("/");
   };
-  if (book) {
-    return <div>loading...</div>;
-  }
+
   return (
     <Container className="mt-4">
       <h2>{book.title}</h2>

@@ -1,14 +1,10 @@
-import { useEffect, useContext } from "react";
-import { Row, Col, Container } from "react-bootstrap";
-import axios from "axios";
-import BookCard from "../components/BookCards";
-import { CartContext } from "../context/CartContext";
+import { createContext, useState, useMemo } from "react";
+export const CartContext = createContext();
 
 export default function Home() {
-  const { books, setBooks } = useContext(CartContext);
+  const { books = [], setBooks } = useContext(CartContext);
 
   useEffect(() => {
-    // ✅ Fetch only once
     if (books.length === 0) {
       axios
         .get("https://backend-repo-bookstore.onrender.com/api/books")
@@ -20,7 +16,7 @@ export default function Home() {
     <Container className="mt-4">
       <Row>
         {books.map((book) => (
-          <Col md={4} key={book.id} className="mb-4">
+          <Col md={4} key={book.id}>
             <BookCard book={book} />
           </Col>
         ))}
