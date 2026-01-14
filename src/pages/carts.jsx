@@ -9,16 +9,21 @@ export default function Cart() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/books")
+      .get("https://backend-repo-bookstore.onrender.com/api/books")
       .then((res) => setBooks(res.data));
   }, [setBooks]);
 
   const handleRemove = async (book) => {
-    await axios.put(`http://localhost:5000/api/books/${book.id}`, {
-      sold: false,
-    });
+    await axios.put(
+      `https://backend-repo-bookstore.onrender.com/api/books/${book.id}`,
+      {
+        sold: false,
+      }
+    );
 
-    const res = await axios.get("http://localhost:5000/api/books");
+    const res = await axios.get(
+      "https://backend-repo-bookstore.onrender.com/api/books"
+    );
     setBooks(res.data);
   };
 
