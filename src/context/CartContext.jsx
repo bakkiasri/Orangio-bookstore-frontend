@@ -1,34 +1,12 @@
-import { createContext, useState, useMemo } from "react";
+import { createContext, useState } from "react";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
-  const [books, setBooks] = useState([]); // ✅ REQUIRED
-
-  const addToCart = (book) => {
-    setCart((prev) => [...prev, book]);
-  };
-
-  const removeFromCart = (id) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
-  };
-
-  const total = useMemo(() => {
-    return cart.reduce((sum, item) => sum + item.price, 0);
-  }, [cart]);
+  const [books, setBooks] = useState([]);
 
   return (
-    <CartContext.Provider
-      value={{
-        cart,
-        addToCart,
-        removeFromCart,
-        total,
-        books, // ✅ REQUIRED
-        setBooks, // ✅ REQUIRED
-      }}
-    >
+    <CartContext.Provider value={{ books, setBooks }}>
       {children}
     </CartContext.Provider>
   );
